@@ -294,4 +294,4 @@ SQL注入攻击：name:'or 1=1or1='
 ```#{}``` ：预编译传值，使用预编译传值可以预防SQL注入攻击
 
 ## Mybatis工作流程
-
+![Mybatis工作流程](https://github.com/zDayDayUp/Pumpkin-Java/blob/main/images/MybatisLiucheng.png?raw=true)
