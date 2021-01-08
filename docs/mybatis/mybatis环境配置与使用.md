@@ -7,7 +7,7 @@ MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接�
 #### 1.通过maven的pom.xml文件引入mybatis需要的包</br>
  在其```<dependencies></dependencies>```标签中添加如下代码
 
-```
+```xml
  <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -17,7 +17,7 @@ MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接�
 ### 2.在```src/main/resources```下新建```mybatis-config.xml```文件</br>
 并进行```xml文件```和```config的dtd文件```的声明
     
-```
+```xml
     <?xml version="1.0" encoding="UTF-8" ?>
     <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
@@ -26,7 +26,7 @@ MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接�
 ```
 
 ### 3.在```mybatis-config.xml```文件中的```<configuration></configuration>```中对数据库进行配置
-```
+```xml
 <configuration>
     <settings>
 <!--        开启驼峰命名转换，若底层数据库表项为goods_ID,实体类为goodsId ，则自动转换-->
@@ -89,7 +89,7 @@ public class MybatisUtils {
 ```
 ### 5.通过SqlSession对数据库进行操作
  在```entity```包下创建要操作的数据库表对应的实体类(必须使用驼峰命名和设置get和set方法),同时在```resources```目录下创建```mappers```目录,在```mappers```目录下创建与该实体类同名的```xml```文件,在对其进行```xml```声明和```mapper```dtd文件声明(注意与```mybatis-config.xml```的dtd文件声明的区别)
- ```
+ ```xml
  <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -97,14 +97,14 @@ public class MybatisUtils {
  ```
  
  然后在```mybatis-config.xml```文件引入该实体与数据库的映射。即在其```<mappers></mappers>```标签中添加映射```xml```文件路径
- ```
+ ```xml
   <mappers>
         <mapper resource="mappers/goods.xml" />
         <mapper resource="mappers/goods_detail.xml" />
   </mappers>
  ```
  当数据库列字段名为多单词且用"_"拼接时，还需在其```<configuration></configuration>```标签中开启驼峰命名转换，使Mybatis自动完成映射。
- ```
+ ```xml
   <settings>
 <!--        开启驼峰命名转换，若底层数据库表项为goods_ID,实体类为goodsId ，则自动转换-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
