@@ -279,6 +279,30 @@
 
 ```
 
+## 批处理
+```xml
+<!--    批处理
+        缺点：无法获得插入数据的id
+        批量生成的sql太长，可能会被服务器拒绝
+-->
+<!--    批量插入-->
+    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT INTO t_goods (title , sub_title , original_cost , current_price , discount , is_free_delivery , category_id)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.title} , #{item.subTitle} , #{item.originalCost} , #{item.currentPrice} , #{item.discount} , #{item.isFreeDelivery} , #{item.categoryId})
+        </foreach>
+    </insert>
+
+<!--    批量删除-->
+    <delete id="batchDelete" parameterType="java.util.List">
+        DELETE FROM t_goods WHERE goods_id IN
+        <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+```
+
 ## SQL的防注入攻击
 SQL注入是指攻击者利用SQL漏洞，绕过系统约束，越权获取数据的攻击方式
 ```sql
