@@ -16,7 +16,7 @@ yum install gcc
 
 ##Redis的常用配置说明
 ![](https://github.com/zDayDayUp/Pumpkin-Java/blob/main/images/Redis/redis1.png?raw=true)</br>
-图上所有属性都在```Redis安装目录/redis.conf```文件中。(redis另外两个重要文件分别是```redis安装目录/src下的redis-server和redis-cli)
+图上所有属性都在```Redis安装目录/redis.conf```文件中。(redis另外两个重要文件分别是```redis安装目录/src下的redis-server和redis-cli```)
 
 ## 设置当前目录为redis安装目录
 ### 将redis服务设置为后台运行
@@ -58,6 +58,11 @@ firewall-cmd --zone=public --add-port=6379/tcp --permanent
 
 ![](https://github.com/zDayDayUp/Pumpkin-Java/blob/main/images/Redis/redis16.png?raw=true)
 重新加载
+
+## 关闭Redis服务
+```linux
+ ./src/redis-cli shutdown
+```
 
 ### 在项目中引入jedis依赖
 ```xml
